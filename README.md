@@ -52,12 +52,6 @@ hybrid.util.openLink(url: string);
 
 #### 分享
 ```typescript
-export interface ShareArgs {
-    
-    content: string;
-    imageUrl: string;
-    targetUrl: string;
-}
 /**
 * interface ShareArgs {
 *   title: string; // 标题
