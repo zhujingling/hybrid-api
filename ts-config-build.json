@@ -5,13 +5,14 @@
     "experimentalDecorators": true,
     "lib": ["es2015", "dom"],
     "target": "es5",
-    "module": "es2015",
+    "module": "UMD",
     "moduleResolution": "node",
     "sourceMap": true,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "bundles/"
   },
   "include": [
-    "bundles/"
+    "src/libraries/"
   ]
 }

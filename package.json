@@ -2,15 +2,15 @@
   "name": "hybrid-api",
   "version": "0.0.1",
   "description": "",
-  "main": "./bundles/index.js",
-  "module": "./bundles/index.ts",
+  "main": "./bundles/hybrid-api.js",
+  "module": "./bundles/index.js",
   "typings": "./bundles/index.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development node server/server.js",
     "pack": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start",
-    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack.prod.js --progress --profile --bail --optimize-minimize",
-    "build:lib": "rimraf bundles && gulp && tsc -p ts-config-build.json",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js --progress --profile --bail --optimize-minimize",
+    "build:lib": "rimraf bundles && npm run build && tsc -p ts-config-build.json",
     "production": "npm run build && node server/product-server.js"
   },
   "author": {
@@ -77,9 +77,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/18616392776/tanbo-ui-native.git"
+    "url": "git+https://github.com/18616392776/hybrid-api.git"
   },
   "bugs": {
-    "url": "https://github.com/18616392776/tanbo-ui-native.git/issues"
+    "url": "https://github.com/18616392776/hybrid-api.git/issues"
   }
 }
