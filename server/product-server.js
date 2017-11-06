@@ -1,5 +1,4 @@
 const historyApiFallback = require("connect-history-api-fallback");
-const open = require('open');
 const favicon = require('express-favicon');
 const path = require('path');
 const express = require('express');
@@ -22,5 +21,5 @@ app.listen(appPort, globalConfig.ip, error => {
         console.log(error);
         return;
     }
-    open('http://' + globalConfig.ip + ':' + appPort);
+    console.log('打开地址：', 'http://' + globalConfig.ip + ':' + appPort);
 });
