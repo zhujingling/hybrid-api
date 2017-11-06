@@ -10,7 +10,8 @@
     "pack": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js --progress --profile --bail --optimize-minimize",
-    "build:lib": "rimraf bundles && npm run build && tsc -p ts-config-build.json",
+    "lib": "cross-env NODE_ENV=production webpack --config config/webpack.lib.js --progress --profile --bail --optimize-minimize",
+    "build:lib": "rimraf bundles && npm run lib  && tsc -p ts-config-build.json",
     "production": "npm run build && node server/product-server.js"
   },
   "author": {
