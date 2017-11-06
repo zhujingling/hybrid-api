@@ -5,7 +5,7 @@
     "experimentalDecorators": true,
     "lib": ["es2015", "dom"],
     "target": "es5",
-    "module": "UMD",
+    "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "noImplicitAny": true,

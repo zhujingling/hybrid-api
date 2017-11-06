@@ -39,7 +39,6 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-
 app.listen(globalConfig.port, globalConfig.ip, error => {
     if (error) {
         console.log(error);
