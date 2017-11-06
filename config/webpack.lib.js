@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const globalConfig = require('../global.config');
 
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const ENV = process.env.NODE_ENV = process.env.ENV = 'lib';
 
 module.exports = {
     devtool: 'source-map',
@@ -14,7 +14,7 @@ module.exports = {
     },
     output: {
         path: globalConfig.buildPath,
-        filename: './hybrid-api.js',
+        filename: 'hybrid-api.js',
         libraryTarget: 'umd',
         library: 'YBB',
         umdNamedDefine: true
