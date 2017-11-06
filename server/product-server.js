@@ -7,7 +7,7 @@ const app = express();
 
 const globalConfig = require('../global.config');
 
-const appPort = '3389';
+const appPort = '8710';
 const appBasePath = path.resolve(__dirname, '../dist/');
 
 
