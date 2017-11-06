@@ -1,7 +1,11 @@
-import { register } from '../core';
+import { APIRegister } from '../core';
 
 export class Navigation {
-    private register = register;
+    private register: APIRegister;
+
+    constructor(register: APIRegister) {
+        this.register = register;
+    }
 
     // 退出 webview
     close(): Promise<any> {

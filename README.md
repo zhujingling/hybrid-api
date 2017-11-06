@@ -58,9 +58,26 @@ hybrid.navigation.hide();
 hybrid.navigation.show();
 ```
 
+#### 用户认证
+```typescript
+const appId: string = 'appId';
+hybrid.user.certification(appId).then(data => {
+    console.log(data); 
+});
+```
+
+#### 用户授权
+```typescript
+const targetUrl: string = 'http://user.test.com';
+hybrid.user.authorization(targetUrl).then(data => {
+    console.log(data);
+});
+```
+
 #### 打开新的 webview
 ```typescript
-hybrid.util.openLink(url: string);
+const url: string = 'http://user.test.com';
+hybrid.util.openLink(url);
 ```
 
 #### 分享
@@ -73,11 +90,30 @@ hybrid.util.openLink(url: string);
 *   targetUrl: string; // 分享跳转的目标地址
 * }
 */
-hybrid.util.share(args: ShareArgs).then(() => {
+const args: ShareArgs = {
+    title: '标题',
+    content: '分享内容',
+    imageUrl: 'http://test.user.com/a.jpg',
+    targetUrl: 'http://test.user.com/target'
+};
+hybrid.util.share(args).then(() => {
     console.log('分享成功！');
 }).cache(error => {
     console.log('分享失败！');
 })
+```
+
+#### 扫描二维码
+```typescript
+/**
+* enum ScanType {
+*    QrCode = 'qrCode'
+* }
+*/
+const scanType = ScanType.QrCode;
+hybrid.util.scan(scanType).then(result => {
+    console.log(result);
+});
 ```
 
 

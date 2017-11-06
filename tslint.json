@@ -1,5 +1,16 @@
 {
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
   "rules": {
+    "no-attribute-parameter-decorator": true,
+    "no-forward-ref": true,
+    "pipe-naming": [true, "camelCase", "ui"],
+    "template-to-ng-template": true,
+    "directive-selector": [true, "attribute", "", "camelCase"],
+    "component-selector": [true, "element", "", "kebab-case"],
+    "component-class-suffix": [true, "Component"],
+    "directive-class-suffix": [true, "Directive"],
     "class-name": true,
     "curly": false,
     "eofline": false,
@@ -48,7 +59,18 @@
     "trailing-comma": true,
     "triple-equals": true,
     "variable-name": false,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "use-host-property-decorator": true,
+    "no-input-rename": true,
+    "no-output-rename": true,
+    "use-life-cycle-interface": true,
+    "use-pipe-transform-interface": true,
+    "import-destructuring-spacing": true,
+    "templates-use-public": true,
+    "no-access-missing-member": true,
     "no-consecutive-blank-lines": true,
+    "invoke-injectable": true,
     "whitespace": [
       true,
       "check-branch",

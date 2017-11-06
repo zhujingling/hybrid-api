@@ -1,4 +1,4 @@
-import { register } from '../core';
+import { APIRegister } from '../core';
 
 export interface LocationInfo {
     longitude: string; // 经度
@@ -9,7 +9,11 @@ export interface LocationInfo {
 }
 
 export class Location {
-    private register = register;
+    private register: APIRegister;
+
+    constructor(register: APIRegister) {
+        this.register = register;
+    }
 
     // 获最当前定位信息
     get(): Promise<LocationInfo> {

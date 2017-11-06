@@ -1,4 +1,4 @@
-import { register } from '../core';
+import { APIRegister } from '../core';
 
 export interface ShareArgs {
     title: string;
@@ -7,8 +7,16 @@ export interface ShareArgs {
     targetUrl: string;
 }
 
+export enum ScanType {
+    QrCode = 'qrCode'
+}
+
 export class Util {
-    private register = register;
+    private register: APIRegister;
+
+    constructor(register: APIRegister) {
+        this.register = register;
+    }
 
     // 打开新的webview
     openLink(url: string): Promise<any> {
@@ -26,6 +34,13 @@ export class Util {
                 imageStr: arg.imageUrl,
                 shareUrlStr: arg.targetUrl
             }
+        });
+    }
+
+    // 扫描二维码
+    scan(type: ScanType): Promise<any> {
+        return this.register.callHandler('biz.util.scan', {
+            type
         });
     }
 }

@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
@@ -14,6 +15,8 @@ const publicPaths = [path.resolve(appPath, 'assets'), path.resolve(__dirname, '.
 
 module.exports = {
     entry: {
+        polyfills: path.resolve(appPath, 'polyfills.ts'),
+        vendor: path.resolve(appPath, 'vendor.ts'),
         app: path.resolve(appPath, 'main.ts')
     },
     resolve: {
@@ -34,7 +37,7 @@ module.exports = {
             }]
         }, {
             test: /\.ts$/,
-            use: isProduction ? ['awesome-typescript-loader'] : ['awesome-typescript-loader', './config/ng-hot-replacement-loader']
+            use: isProduction ? ['@ngtools/webpack'] : ['ng-router-loader', 'awesome-typescript-loader', 'angular2-template-loader', './config/ng-hot-replacement-loader']
         }, {
             test: /\.md$/,
             use: ['raw-loader']
@@ -103,7 +106,13 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(appPath, 'index.html'),
-            favicon: path.resolve(appPath, 'assets/images/favicon.ico')
+            favicon: path.resolve(appPath, 'assets/images/favicon.ico'),
+            chunksSortMode(n, m) {
+                let order = ['polyfills', 'vendor', 'app'];
+                let order1 = order.indexOf(n.names[0]);
+                let order2 = order.indexOf(m.names[0]);
+                return order1 - order2;
+            }
         })
     ]
 };

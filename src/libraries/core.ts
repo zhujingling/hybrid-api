@@ -31,19 +31,19 @@ export class APIRegister {
         this.bridge = bridge;
     });
 
-    registerHandler(methodName: string, fn: (data: any, responseCallback: () => any) => any): Promise<any> {
+    registerHandler(methodName: string): Promise<any> {
         return new Promise<any>(resolve => {
             if (!this.bridge) {
                 this.bridgeWrapper.then(() => {
                     this.bridge.registerHandler(methodName, (data, responseCallback) => {
-                        resolve(data);
+                        resolve(JSON.parse(data));
                         responseCallback();
                     });
                 });
                 return;
             }
             this.bridge.registerHandler(methodName, (data, responseCallback) => {
-                resolve(data);
+                resolve(JSON.parse(data));
                 responseCallback();
             });
         });
@@ -57,7 +57,7 @@ export class APIRegister {
                         handlerName: methodName,
                         params: params || {}
                     }, responseData => {
-                        resolve(responseData);
+                        resolve(JSON.parse(responseData));
                     });
                 });
                 return;
@@ -66,10 +66,8 @@ export class APIRegister {
                 handlerName: methodName,
                 params
             }, responseData => {
-                resolve(responseData);
+                resolve(JSON.parse(responseData));
             });
         });
     }
 }
-
-export const register = new APIRegister();

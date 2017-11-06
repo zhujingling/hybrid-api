@@ -1,0 +1,43 @@
+.log {
+    height: 200px;
+    color: #fff;
+    background-color: #000;
+    padding: 15px;
+    overflow: auto;
+    &.has-error {
+        color: #f00;
+    }
+}
+
+.forms {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 200px;
+    overflow-y: scroll;
+    h3 {
+        padding-left: 15px;
+        background-color: #555;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #fff;
+    }
+}
+
+.form-control {
+    margin-bottom: 10px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.btn {
+    width: 100%;
+}
+
+.table {
+    th:last-child {
+        width: 140px;
+    }
+}
