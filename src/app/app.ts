@@ -23,6 +23,10 @@ export class AppComponent {
 
     scanType: ScanType;
 
+    getUUID() {
+        this.resultHandle(hybrid.device.getUUID());
+    }
+
     getLocation() {
         this.resultHandle(hybrid.location.get());
     }
