@@ -13,7 +13,8 @@ export class HybridEngine {
     util: Util;
     user: User;
 
-    constructor(register: APIRegister) {
+    constructor(rawValueCallback?: (data: any) => any) {
+        const register = new APIRegister(rawValueCallback);
         this.device = new Device(register);
         this.location = new Location(register);
         this.navigation = new Navigation(register);
@@ -22,7 +23,7 @@ export class HybridEngine {
     }
 }
 
-export const hybrid = new HybridEngine(new APIRegister());
+export const hybrid = new HybridEngine();
 
 export {
     APIRegister,
