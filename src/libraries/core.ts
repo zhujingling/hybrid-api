@@ -7,10 +7,9 @@ const setupWebViewJavascriptBridge = new Promise<Bridge>(resolve => {
     };
 
     if (window['WebViewJavascriptBridge']) {
-        resolve(window['WebViewJavascriptBridge']);
-    } else {
-        document.addEventListener('WebViewJavascriptBridgeReady', callback, false);
+        return resolve(window['WebViewJavascriptBridge']);
     }
+    document.addEventListener('WebViewJavascriptBridgeReady', callback, false);
 
     if (window['WVJBCallbacks']) {
         return window['WVJBCallbacks'].push(callback);
