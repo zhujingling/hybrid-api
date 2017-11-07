@@ -41,7 +41,9 @@ export class APIRegister {
             const fn = function (data: any, responseCallback: () => void) {
                 try {
                     const response = JSON.parse(data);
-                    this.rawValueCallback && this.rawValueCallback(response);
+                    if (this.rawValueCallback) {
+                        this.rawValueCallback(response);
+                    }
                     if (response.errorCode === '0') {
                         resolve(response.result);
                     } else {
@@ -67,7 +69,9 @@ export class APIRegister {
             const fn = function (responseData: any) {
                 try {
                     const response = JSON.parse(responseData);
-                    this.rawValueCallback && this.rawValueCallback(response);
+                    if (this.rawValueCallback) {
+                        this.rawValueCallback(response);
+                    }
                     if (response.errorCode === '0') {
                         resolve(response.result);
                     } else {

@@ -6,7 +6,7 @@ import { Navigation } from './apis/navigation';
 import { User } from './apis/user';
 import { Util, ShareArgs, ScanType } from './apis/util';
 
-export class HybridEngine {
+export class Hybrid {
     device: Device;
     location: Location;
     navigation: Navigation;
@@ -23,7 +23,7 @@ export class HybridEngine {
     }
 }
 
-export const hybrid = new HybridEngine();
+export const hybrid = new Hybrid();
 
 export {
     APIRegister,

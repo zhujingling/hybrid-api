@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { hybrid, ShareArgs, ScanType } from '../libraries/index';
+import { ShareArgs, ScanType, Hybrid } from '../libraries/index';
 
 @Component({
     selector: 'my-app',
@@ -22,54 +22,51 @@ export class AppComponent {
     };
 
     scanType: ScanType;
+    hybrid: Hybrid;
+
+    constructor() {
+        this.hybrid = new Hybrid(data => {
+            this.log = JSON.stringify(data, null, 2);
+        });
+    }
 
     getUUID() {
-        this.resultHandle(hybrid.device.getUUID());
+        this.hybrid.device.getUUID();
     }
 
     getLocation() {
-        this.resultHandle(hybrid.location.get());
+        this.hybrid.location.get();
     }
 
     navClose() {
-        this.resultHandle(hybrid.navigation.close());
+        this.hybrid.navigation.close();
     }
 
     navShow() {
-        this.resultHandle(hybrid.navigation.show());
+        this.hybrid.navigation.show();
     }
 
     navHide() {
-        this.resultHandle(hybrid.navigation.hide());
+        this.hybrid.navigation.hide();
     }
 
     userCertification() {
-        this.resultHandle(hybrid.user.certification(this.certificationAppId));
+        this.hybrid.user.certification(this.certificationAppId);
     }
 
     userAuthorization() {
-        this.resultHandle(hybrid.user.authorization(this.authorizationUrl));
+        this.hybrid.user.authorization(this.authorizationUrl);
     }
 
     openLink() {
-        this.resultHandle(hybrid.util.openLink(this.openLinkUrl));
+        this.hybrid.util.openLink(this.openLinkUrl);
     }
 
     share() {
-        this.resultHandle(hybrid.util.share(this.shareArgs));
+        this.hybrid.util.share(this.shareArgs);
     }
 
     scan() {
-        this.resultHandle(hybrid.util.scan(this.scanType));
-    }
-
-    private resultHandle(result: Promise<any>) {
-        result.then(data => {
-            this.isError = false;
-            this.log = JSON.stringify(data, null, 2);
-        }).catch(error => {
-            this.isError = true;
-            this.log = JSON.stringify(error, null, 2);
-        });
+        this.hybrid.util.scan(this.scanType);
     }
 }
