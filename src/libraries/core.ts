@@ -31,42 +31,57 @@ export class APIRegister {
     });
 
     registerHandler(methodName: string): Promise<any> {
-        return new Promise<any>(resolve => {
+        return new Promise<any>((resolve, reject) => {
+            const fn = function (data: any, responseCallback: () => void) {
+                try {
+                    const response = JSON.parse(data);
+                    if (response.errorCode === '0') {
+                        resolve(response.result);
+                    } else {
+                        reject(response.result);
+                    }
+                } catch (e) {
+                    reject(e);
+                }
+                responseCallback();
+            };
             if (!this.bridge) {
                 this.bridgeWrapper.then(() => {
-                    this.bridge.registerHandler(methodName, (data, responseCallback) => {
-                        resolve(JSON.parse(data));
-                        responseCallback();
-                    });
+                    this.bridge.registerHandler(methodName, fn);
                 });
                 return;
             }
-            this.bridge.registerHandler(methodName, (data, responseCallback) => {
-                resolve(JSON.parse(data));
-                responseCallback();
-            });
+            this.bridge.registerHandler(methodName, fn);
         });
     }
 
     callHandler(methodName: string, params?: any): Promise<any> {
-        return new Promise<any>(resolve => {
+        return new Promise<any>((resolve, reject) => {
+            const fn = function (responseData: any) {
+                try {
+                    const response = JSON.parse(responseData);
+                    if (response.errorCode === '0') {
+                        resolve(response.result);
+                    } else {
+                        reject(response.result);
+                    }
+                } catch (e) {
+                    reject(e);
+                }
+            };
             if (!this.bridge) {
                 this.bridgeWrapper.then(() => {
                     this.bridge.callHandler('dd.native.call', {
                         handlerName: methodName,
                         params: params || {}
-                    }, responseData => {
-                        resolve(JSON.parse(responseData));
-                    });
+                    }, fn);
                 });
                 return;
             }
             this.bridge.callHandler('dd.native.call', {
                 handlerName: methodName,
                 params
-            }, responseData => {
-                resolve(JSON.parse(responseData));
-            });
+            }, fn);
         });
     }
 }
