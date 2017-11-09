@@ -60,16 +60,30 @@ hybrid.navigation.show();
 
 #### 用户认证
 ```typescript
+/**
+* interface CertificationInfo {
+*   username: string; // 用户名
+*   idCardNo: string; // 身份证号码
+*   mobile: string; // 手机号码
+* }
+*/
 const appId: string = 'appId';
-hybrid.user.certification(appId).then(data => {
+hybrid.user.certification(appId).then((data: CertificationInfo) => {
     console.log(data); 
 });
 ```
 
 #### 用户授权
 ```typescript
+/**
+* interface AuthorizationInfo {
+*   state: string;
+*   code: string;
+* }
+*/
+
 const targetUrl: string = 'http://user.test.com';
-hybrid.user.authorization(targetUrl).then(data => {
+hybrid.user.authorization(targetUrl).then((data: AuthorizationInfo) => {
     console.log(data);
 });
 ```

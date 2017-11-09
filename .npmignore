@@ -5,6 +5,7 @@ docs/
 node_modules/
 middle-file/
 server/
+dist/
 src/
 .editorconfig
 .gitignore
