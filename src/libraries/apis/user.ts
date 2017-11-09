@@ -24,7 +24,7 @@ export class User {
             this.register.callHandler('user.certification', {
                 appId
             }).then(result => {
-                if (result.certSuccess === '0') {
+                if (result.certSuccess === '1') {
                     resolve({
                         username: result.username,
                         idCardNo: result.idCardNo,
