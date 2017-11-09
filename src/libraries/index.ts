@@ -3,7 +3,7 @@ import { APIRegister } from './core';
 import { Device, UUIDInfo } from './apis/device';
 import { Location, LocationInfo } from './apis/location';
 import { Navigation } from './apis/navigation';
-import { User } from './apis/user';
+import { User, AuthorizationInfo, CertificationInfo } from './apis/user';
 import { Util, ShareArgs, ScanType } from './apis/util';
 
 export class Hybrid {
@@ -33,6 +33,8 @@ export {
     LocationInfo,
     Navigation,
     User,
+    AuthorizationInfo,
+    CertificationInfo,
     Util,
     ShareArgs,
     ScanType
