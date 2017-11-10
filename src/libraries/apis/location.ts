@@ -17,6 +17,8 @@ export class Location {
 
     // 获最当前定位信息
     get(): Promise<LocationInfo> {
-        return this.register.callHandler('device.location.get');
+        return this.register.callHandler('device.location.get').then(result => {
+            return JSON.parse(result);
+        });
     }
 }

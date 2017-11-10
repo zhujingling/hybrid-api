@@ -1,6 +1,6 @@
 {
   "name": "hybrid-api",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "./bundles/hybrid-api.js",
   "module": "./bundles/index.js",
