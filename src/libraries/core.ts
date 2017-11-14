@@ -1,5 +1,4 @@
 import { Bridge } from './help';
-import './android-init.js';
 
 const setupWebViewJavascriptBridge = new Promise<Bridge>(resolve => {
 
