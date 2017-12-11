@@ -7,8 +7,8 @@ export interface UUIDInfo {
 export type SelectImgOptions = '拍照' | '相册';
 
 export interface SelectImgParams {
-    cancelButton?: string;
-    otherButtons?: Array<SelectImgOptions>;
+    cancelButton: string;
+    otherButtons: Array<SelectImgOptions>;
 }
 
 export interface SelectImgInfo {
@@ -28,7 +28,7 @@ export class Device {
     }
 
     // 通过相册或拍照，获取一张图片
-    selectImg(args?: SelectImgParams): Promise<SelectImgInfo> {
+    selectImg(args: SelectImgParams): Promise<SelectImgInfo> {
         return this.register.callHandler('device.notification.selectImg', args);
     }
 }
