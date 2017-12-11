@@ -43,8 +43,8 @@ hybrid.device.getUUID().then((info: UUIDInfo) => {
 ```typescript
 /**
 * interface SelectImgParams {
-*     cancelButton?: string;
-*     otherButtons?: Array<SelectImgOptions>;
+*     cancelButton: string;
+*     otherButtons: Array<SelectImgOptions>;
 * }
 */
 
