@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const version = require('../package.json').version;
 const globalConfig = require('../global.config');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'lib';
@@ -14,7 +15,7 @@ module.exports = {
     },
     output: {
         path: globalConfig.buildPath,
-        filename: 'hybrid-api.js',
+        filename: 'hybrid-api-' + version + '.js',
         libraryTarget: 'umd',
         library: 'YBB',
         umdNamedDefine: true
@@ -40,7 +41,8 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'ENV': JSON.stringify(ENV)
+                'ENV': JSON.stringify(ENV),
+                'version': JSON.stringify(version)
             }
         })
     ]

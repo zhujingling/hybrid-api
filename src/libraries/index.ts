@@ -25,6 +25,8 @@ export class Hybrid {
 
 export const hybrid = new Hybrid();
 
+export const version: string = process.env.version;
+
 export {
     APIRegister,
     Device,
