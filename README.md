@@ -1,4 +1,4 @@
-# Hybrid 混合开发 api 测试版
+# Hybrid 混合开发API @^2.0.0
 
 为了更好的可维护性和可扩展性。本项目用 Typescript 实现，并已发布在 npm，要使用，请通过 npm 安装。
 ```bash
