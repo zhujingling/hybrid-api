@@ -1,4 +1,4 @@
-# 云宝宝 Hybrid 混合开发 api 测试版
+# Hybrid 混合开发 api 测试版
 
 为了更好的可维护性和可扩展性。本项目用 Typescript 实现，并已发布在 npm，要使用，请通过 npm 安装。
 ```bash
@@ -11,7 +11,7 @@ hybrid 所有方法均返回一个 [Promise](https://developer.mozilla.org/zh-CN
 
 ### 传统开发模式
 
-如果使用的是传统模式，请通过标签导入，或者通过 cdn [http://hybrid-api.js](http://hybrid-api.js)导入，并通过 YBB 的命名空间调用实际方法
+如果使用的是传统模式，请通过标签导入，并通过 YBB 的命名空间调用实际方法
 ```html
 <script src="node_modules/hybrid-api/bundles/hybrid-api.js"></script>
 <script>
@@ -29,6 +29,37 @@ import { hybrid } from 'hybrid-api';
 
 ## 方法
 **以下代码示例均为 Typescript**
+
+### Device
+
+#### 获取设备UUID
+
+```typescript
+hybrid.device.getUUID().then((info: UUIDInfo) => {
+   console.log(info.uuid); 
+});
+```
+#### 通过拍照或相册获取一张图片
+```typescript
+/**
+* interface SelectImgParams {
+*     cancelButton?: string;
+*     otherButtons?: Array<SelectImgOptions>;
+* }
+*/
+
+const params: SelectImgParams = {
+    cancelButton: '取消',
+    otherButtons: ['拍照', '相册']
+};
+
+hybrid.device.selectImg(params).then((info: SelectImgInfo) => {
+    console.log(info.imgPath);
+});
+```
+
+### Location
+
 #### 获取当前定位信息
 ```typescript
 /**
@@ -45,6 +76,9 @@ hybrid.location.get().then((location: LocationInfo) => {
 });
 ```
 
+### Navigation
+
+
 #### 关闭 webview
 ```typescript
 hybrid.navigation.close();
@@ -57,6 +91,8 @@ hybrid.navigation.hide();
 ```typescript
 hybrid.navigation.show();
 ```
+
+### User
 
 #### 用户认证
 ```typescript
@@ -87,6 +123,8 @@ hybrid.user.authorization(targetUrl).then((data: AuthorizationInfo) => {
     console.log(data);
 });
 ```
+
+### Util
 
 #### 打开新的 webview
 ```typescript

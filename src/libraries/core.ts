@@ -1,4 +1,5 @@
 import { Bridge } from './help';
+import './polyfills';
 
 const setupWebViewJavascriptBridge = new Promise<Bridge>(resolve => {
 
