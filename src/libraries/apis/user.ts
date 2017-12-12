@@ -58,4 +58,9 @@ export class User {
             });
         });
     }
+
+    // 用户登录
+    login(): Promise<boolean> {
+        return this.register.callHandler('user.login');
+    }
 }

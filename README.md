@@ -4,6 +4,9 @@
 ```bash
 npm install hybrid-api --save
 ```
+## 更新日志
+
+[CHANGELOG.md]('./CHANGELOG.md);
 
 ## 调用方法
 
@@ -13,9 +16,9 @@ hybrid 所有方法均返回一个 [Promise](https://developer.mozilla.org/zh-CN
 
 如果使用的是传统模式，请通过标签导入，并通过 YBB 的命名空间调用实际方法
 ```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.0.2.js"></script>
-<!-- 如果你是通过npm 安装，也可以这样 -->
-<!--<script src="node_modules/hybrid-api/bundles/hybrid-api.js"></script>-->
+<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.1.0.js"></script>
+<!-- 如果你是通过 npm 安装，也可以这样 -->
+<!-- <script src="node_modules/hybrid-api/bundles/hybrid-api.js"></script> -->
 <script>
 // 获取当前定位信息
 YBB.hybrid.location.get().then(function(location) {
@@ -123,6 +126,15 @@ hybrid.user.certification(appId).then((data: CertificationInfo) => {
 const targetUrl: string = 'http://user.test.com';
 hybrid.user.authorization(targetUrl).then((data: AuthorizationInfo) => {
     console.log(data);
+});
+```
+
+#### 用户登录
+```typescript
+hybrid.user.login().then((isLogin: boolean) => {
+    if (isLogin) {
+        console.log('登录成功');
+    }
 });
 ```
 
