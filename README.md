@@ -6,7 +6,7 @@ npm install hybrid-api --save
 ```
 ## 更新日志
 
-[CHANGELOG.md]('./CHANGELOG.md);
+[CHANGELOG.md](CHANGELOG.md)
 
 ## 调用方法
 
