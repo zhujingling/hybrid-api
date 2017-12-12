@@ -1,6 +1,6 @@
 {
   "name": "hybrid-api",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "./bundles/hybrid-api.js",
   "module": "./bundles/index.js",
@@ -11,7 +11,7 @@
     "test": "karma start",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack.prod.js --progress --profile --bail --optimize-minimize",
     "lib": "cross-env NODE_ENV=lib webpack --config config/webpack.lib.js --progress --profile --bail --optimize-minimize",
-    "build:lib": "rimraf bundles && npm run lib  && tsc -p ts-config-build.json",
+    "build:lib": "rimraf bundles && gulp && npm run lib  && tsc -p ts-config-build.json",
     "production": "npm run build && NODE_ENV=production forever start -l forever-hybrid-api.log -a server/product-server.js",
     "stop": "forever stop dist/product-server.js"
   },
