@@ -11,6 +11,12 @@ export enum ScanType {
     QrCode = 'qrCode'
 }
 
+export interface PaymentInfo {
+    errorCode: string;
+    stateCode: string;
+    resultDes: string;
+}
+
 export class Util {
     private register: APIRegister;
 
@@ -38,9 +44,16 @@ export class Util {
     }
 
     // 扫描二维码
-    scan(type: ScanType): Promise<any> {
+    scan(type: ScanType): Promise<string> {
         return this.register.callHandler('biz.util.scan', {
             type
+        });
+    }
+
+    // 统一支付接口
+    pay(params: string): Promise<PaymentInfo> {
+        return this.register.callHandler('biz.util.pay', {
+            content: params
         });
     }
 }

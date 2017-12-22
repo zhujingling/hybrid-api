@@ -16,7 +16,7 @@ hybrid 所有方法均返回一个 [Promise](https://developer.mozilla.org/zh-CN
 
 如果使用的是传统模式，请通过标签导入，并通过 YBB 的命名空间调用实际方法
 ```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.1.0.js"></script>
+<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.0.js"></script>
 <!-- 如果你是通过 npm 安装，也可以这样 -->
 <!-- <script src="node_modules/hybrid-api/bundles/hybrid-api.js"></script> -->
 <script>
@@ -179,6 +179,22 @@ hybrid.util.share(args).then(() => {
 const scanType = ScanType.QrCode;
 hybrid.util.scan(scanType).then(result => {
     console.log(result);
+});
+```
+
+### 支付
+```typescript
+/**
+* interface PaymentInfo {
+*    errorCode: string;
+*    stateCode: string;
+*    resultDes: string;
+* }
+*/
+
+const params: string = '{key: value}'; // 由后台提供的字符串
+hybrid.util.pay(params).then((response: PaymentInfo) => {
+   console.log(response); 
 });
 ```
 
