@@ -25,9 +25,10 @@ export class Util {
     }
 
     // 打开新的webview
-    openLink(url: string): Promise<any> {
+    openLink(url: string, params?: { [key: string]: any }): Promise<any> {
         return this.register.callHandler('biz.util.openLink', {
-            url
+            url,
+            params
         });
     }
 
