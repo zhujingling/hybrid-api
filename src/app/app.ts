@@ -85,7 +85,13 @@ export class AppComponent {
     }
 
     openLink() {
-        this.hybrid.util.openLink(this.openLinkUrl);
+        let params: any = {};
+
+        for (let i = 0; i < this.openLinkParams.length; i++) {
+            let item = this.openLinkParams[i];
+            params[item.key] = item.value;
+        }
+        this.hybrid.util.openLink(this.openLinkUrl, params);
     }
 
     share() {
