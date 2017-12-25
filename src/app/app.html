@@ -4,146 +4,139 @@
 
 <div class="forms">
   <h3>Device</h3>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>调用参数</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <p>device.base.getUUID</p>
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="getUUID()">获取UUID</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div>
+    <div>
+      <h4>获取UUID</h4>
+      <div class="color-muted">device.base.getUUID</div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="getUUID()">调用</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>通过相册或拍照，获取一张图片</h4>
+      <div class="color-muted">device.base.selectImg</div>
+      <p>
+        <input type="text" class="form-control" [(ngModel)]="selectImgArgs.cancelButton" placeholder="取消按扭文字">
+      </p>
+      <p>
+        <label><input (change)="setSelectImgBtn()" [(ngModel)]="selectImgBtn1" type="checkbox"> 拍照</label>
+        <label><input (change)="setSelectImgBtn()" [(ngModel)]="selectImgBtn2" type="checkbox"> 相册</label>
+      </p>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="selectImg()">调用</button>
+    </div>
+  </div>
   <h3>Location</h3>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>调用参数</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <p>device.location.get</p>
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="getLocation()">获取定位信息</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div>
+    <div>
+      <h4>获取定位信息</h4>
+      <div class="color-muted">device.location.get</div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="getLocation()">调用</button>
+    </div>
+  </div>
   <h3>Navigation</h3>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>调用参数</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <p>biz.navigation.close</p>
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="navClose()">关闭webview</button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>biz.navigation.show</p>
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="navShow()">显示导航条</button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>biz.navigation.hide</p>
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="navHide()">隐藏导航条</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div>
+    <div>
+      <h4>关闭webview</h4>
+      <div class="color-muted">biz.navigation.close</div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="navClose()">调用</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>显示导航条</h4>
+      <div class="color-muted">biz.navigation.show</div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="navShow()">调用</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>隐藏导航条</h4>
+      <div class="color-muted">biz.navigation.hide</div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="navHide()">调用</button>
+    </div>
+  </div>
   <h3>User</h3>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>调用参数</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <p>user.certification</p>
+  <div>
+    <div>
+      <h4>用户认证</h4>
+      <div class="color-muted">user.certification</div>
+      <p>
         <input type="text" placeholder="appId" [(ngModel)]="certificationAppId" class="form-control">
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="userCertification()">用户认证</button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>user.authorization</p>
+      </p>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="userCertification()">调用</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>用户授权</h4>
+      <div class="color-muted">user.authorization</div>
+      <p>
         <input type="text" placeholder="url" [(ngModel)]="authorizationUrl" class="form-control">
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="userAuthorization()">用户授权</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+      </p>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="userAuthorization()">调用</button>
+    </div>
+  </div>
   <h3>Util</h3>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>调用参数</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <p>biz.util.openLink</p>
+  <div>
+    <div>
+      <h4>打开链接</h4>
+      <div class="color-muted">biz.util.openLink</div>
+      <p>
         <input type="text" placeholder="url" [(ngModel)]="openLinkUrl" class="form-control">
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="openLink()">打开链接</button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>biz.util.share</p>
+      </p>
+      <div>参数
+        <button type="button" class="btn" (click)="openLinkParams.push({})">添加</button>
+        <button class="btn" type="button" (click)="openLinkParams.length > 1 && openLinkParams.pop()">删除</button>
+      </div>
+      <div *ngFor="let item of openLinkParams">
+        <p>
+          <input type="text" class="form-control" placeholder="key" [(ngModel)]="item.key">
+          <input type="text" class="form-control" placeholder="value" [(ngModel)]="item.value">
+        </p>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="openLink()">调用</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>分享</h4>
+      <div class="color-muted">biz.util.share</div>
+      <p>
         <input type="text" placeholder="title" [(ngModel)]="shareArgs.title" class="form-control">
         <input type="text" placeholder="content" [(ngModel)]="shareArgs.content" class="form-control">
         <input type="text" placeholder="imageUrl" [(ngModel)]="shareArgs.imageUrl" class="form-control">
         <input type="text" placeholder="targetUrl" [(ngModel)]="shareArgs.targetUrl" class="form-control">
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="share()">分享</button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>biz.util.scan</p>
-        <input type="text" placeholder="type" [(ngModel)]="scanType" class="form-control">
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="scan()">扫描二级码</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+      </p>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="share()">调用</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>扫描二级码</h4>
+      <div class="color-muted">biz.util.scan</div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="scan()">调用</button>
+    </div>
+  </div>
 </div>

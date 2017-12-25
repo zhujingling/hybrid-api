@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ShareArgs, ScanType, Hybrid } from '../libraries/index';
+import { ShareArgs, ScanType, Hybrid, SelectImgParams, SelectImgOptions } from '../libraries/index';
 
 @Component({
     selector: 'my-app',
@@ -21,8 +21,18 @@ export class AppComponent {
         targetUrl: ''
     };
 
+    selectImgArgs: SelectImgParams = {
+        cancelButton: '取消按扭文字',
+        otherButtons: []
+    };
+
+    selectImgBtn1: boolean = true;
+    selectImgBtn2: boolean = true;
+
     scanType: ScanType;
     hybrid: Hybrid;
+
+    openLinkParams: Array<any> = [{}];
 
     constructor() {
         this.hybrid = new Hybrid(data => {
@@ -32,6 +42,22 @@ export class AppComponent {
 
     getUUID() {
         this.hybrid.device.getUUID();
+    }
+
+    selectImg() {
+        this.hybrid.device.selectImg(this.selectImgArgs);
+    }
+
+    setSelectImgBtn() {
+        let arr: Array<SelectImgOptions> = [];
+        if (this.selectImgBtn1) {
+            arr.push('拍照');
+        }
+        if (this.selectImgBtn2) {
+            arr.push('相册');
+        }
+
+        this.selectImgArgs.otherButtons = arr;
     }
 
     getLocation() {
