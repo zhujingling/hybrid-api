@@ -12,28 +12,16 @@ npm install hybrid-api --save
 
 hybrid 所有方法均返回一个 [Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise) 实例，通过 then 方法，获取调用结果。
 
-### 传统开发模式
+以下是 Typescript 文档，查看 [Javascript 文档](./README-JS.md)。
 
-如果使用的是传统模式，请通过标签导入，并通过 YBB 的命名空间调用实际方法
-```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.1.js"></script>
-<!-- 如果你是通过 npm 安装，也可以这样 -->
-<!-- <script src="node_modules/hybrid-api/bundles/hybrid-api.js"></script> -->
-<script>
-// 获取当前定位信息
-YBB.hybrid.location.get().then(function(location) {
-    console.log(location);
-});
-</script>
-```
-### 模块化开发模式
+
+### 在项目中导入 hybrid-api
 
 ```typescript
 import { hybrid } from 'hybrid-api';
 ```
 
 ## 方法
-**以下代码示例均为 Typescript**
 
 ### Device
 
