@@ -4,12 +4,6 @@
 
 ```html
 <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.1.js"></script>
-<script>
-// 获取当前定位信息
-YBB.hybrid.location.get().then(function(location) {
-    console.log(location);
-});
-</script>
 ```
 
 ## 方法
