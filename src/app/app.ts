@@ -23,7 +23,7 @@ export class AppComponent {
 
     selectImgArgs: SelectImgParams = {
         cancelButton: '取消按扭文字',
-        otherButtons: []
+        otherButtons: ['拍照', '相册']
     };
 
     selectImgBtn1: boolean = true;
