@@ -29,6 +29,8 @@ export class Device {
 
     // 通过相册或拍照，获取一张图片
     selectImg(args: SelectImgParams): Promise<SelectImgInfo> {
-        return this.register.callHandler('device.notification.selectImg', args);
+        return this.register.callHandler('device.notification.selectImg', args).then((result: string) => {
+            return JSON.parse(result);
+        });
     }
 }

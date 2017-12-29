@@ -3,7 +3,7 @@
 ## 引入类库
 
 ```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.1.js"></script>
+<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.2.js"></script>
 ```
 
 ## 方法
@@ -28,6 +28,8 @@ var params = {
 
 YBB.hybrid.device.selectImg(params).then(function(info) {
     console.log(info.imgPath);
+}).catch(function(error) {
+  alert(error);
 });
 ```
 
