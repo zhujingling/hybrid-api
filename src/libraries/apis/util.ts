@@ -12,9 +12,11 @@ export enum ScanType {
 }
 
 export interface PaymentInfo {
-    errorCode: string;
-    stateCode: string;
-    resultDes: string;
+    errorCode: string; // 1. 支付成功 2.支付失败 3.用户主动取消支付
+    stateCode: string; // 支付出错时，支付平台返回的errorCode，具体值参考：
+                       // 支付宝：https://docs.open.alipay.com/204/105301/
+                       // 微信：https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5
+    resultDes: string; // 结果描述，具体描述为各个支付平台对应的错误描述
 }
 
 export class Util {
