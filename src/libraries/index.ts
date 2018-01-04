@@ -1,6 +1,6 @@
 import { APIRegister } from './core';
 
-import { Device, UUIDInfo, SelectImgInfo, SelectImgParams, SelectImgOptions } from './apis/device';
+import { Device, UUIDInfo, SelectImgInfo, ChooseImgInfo, SelectImgParams, SelectImgOptions } from './apis/device';
 import { Location, LocationInfo } from './apis/location';
 import { Navigation } from './apis/navigation';
 import { User, AuthorizationInfo, CertificationInfo } from './apis/user';
@@ -31,6 +31,7 @@ export {
     APIRegister,
     Device,
     SelectImgInfo,
+    ChooseImgInfo,
     SelectImgParams,
     SelectImgOptions,
     UUIDInfo,

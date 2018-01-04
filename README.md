@@ -47,7 +47,28 @@ const params: SelectImgParams = {
 };
 
 hybrid.device.selectImg(params).then((info: SelectImgInfo) => {
+    // info.imgPath 为本地地址
     console.log(info.imgPath);
+});
+```
+
+#### 通过拍照或相册上传一张图片
+```typescript
+/**
+* interface SelectImgParams {
+*     cancelButton: string;
+*     otherButtons: Array<SelectImgOptions>;
+* }
+*/
+
+const params: SelectImgParams = {
+    cancelButton: '取消',
+    otherButtons: ['拍照', '相册']
+};
+
+hybrid.device.chooseImg(params).then((info: ChooseImgInfo) => {
+    // info.picPath 为网络地址
+    console.log(info.picPath);
 });
 ```
 

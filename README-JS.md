@@ -27,9 +27,23 @@ var params = {
 };
 
 YBB.hybrid.device.selectImg(params).then(function(info) {
+    // info.imgPath 为本地地址
     console.log(info.imgPath);
-}).catch(function(error) {
-  alert(error);
+});
+```
+
+#### 通过拍照或相册上传一张图片
+```js
+
+var params = {
+    cancelButton: '取消',
+    otherButtons: ['拍照', '相册']
+};
+
+hybrid.device.chooseImg(params).then(function(info) {
+    // info = {result: boolean, picPath: string}
+    // info.picPath 为网络地址
+    console.log(info.picPath);
 });
 ```
 

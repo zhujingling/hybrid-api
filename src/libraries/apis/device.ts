@@ -15,6 +15,11 @@ export interface SelectImgInfo {
     imgPath: string;
 }
 
+export interface ChooseImgInfo {
+    picPath: string;
+    result: boolean;
+}
+
 export class Device {
     private register: APIRegister;
 
@@ -30,7 +35,20 @@ export class Device {
     // 通过相册或拍照，获取一张图片
     selectImg(args: SelectImgParams): Promise<SelectImgInfo> {
         return this.register.callHandler('device.notification.selectImg', args).then((result: string) => {
-            return JSON.parse(result);
+            if (typeof result === 'string') {
+                return JSON.parse(result);
+            }
+            return result;
+        });
+    }
+
+    // 通过相册或拍照，上传一张图片
+    chooseImg(args: SelectImgParams): Promise<ChooseImgInfo> {
+        return this.register.callHandler('device.notification.chooseImage', args).then((result: string) => {
+            if (typeof result === 'string') {
+                return JSON.parse(result);
+            }
+            return result;
         });
     }
 }
