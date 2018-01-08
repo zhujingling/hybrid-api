@@ -40,7 +40,7 @@ var params = {
     otherButtons: ['拍照', '相册']
 };
 
-hybrid.device.chooseImg(params).then(function(info) {
+YBB.hybrid.device.chooseImg(params).then(function(info) {
     // info = {result: boolean, picPath: string}
     // info.picPath 为网络地址
     console.log(info.picPath);
@@ -51,16 +51,16 @@ hybrid.device.chooseImg(params).then(function(info) {
 
 #### 获取当前定位信息
 ```js
-/**
-* interface LocationInfo {
-*   longitude: string; // 经度
-*   latitude: string; // 纬度
-*   detailAddress: string; // 详细地址
-*   cityName: string; // 城市
-*   region: string; // 区域名称
-* }
-*/
 YBB.hybrid.location.get().then(function(location) {
+    /**
+    * location = {
+    *   longitude: string; // 经度
+    *   latitude: string; // 纬度
+    *   detailAddress: string; // 详细地址
+    *   cityName: string; // 城市
+    *   region: string; // 区域名称
+    * }
+    */
     console.log(location);
 });
 ```
@@ -100,12 +100,6 @@ YBB.hybrid.user.certification(appId).then(function(data) {
 
 #### 用户授权
 ```js
-/**
-* interface AuthorizationInfo {
-*   state: string;
-*   code: string;
-* }
-*/
 
 var targetUrl = 'http://user.test.com';
 YBB.hybrid.user.authorization(targetUrl).then(function(data) {
