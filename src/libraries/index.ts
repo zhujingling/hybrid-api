@@ -4,7 +4,7 @@ import { Device, UUIDInfo, SelectImgInfo, ChooseImgInfo, SelectImgParams, Select
 import { Location, LocationInfo } from './apis/location';
 import { Navigation } from './apis/navigation';
 import { User, AuthorizationInfo, CertificationInfo } from './apis/user';
-import { Util, ShareArgs, ScanType, PaymentInfo } from './apis/util';
+import { Util, ShareArgs, ScanType, ScanResult, PaymentInfo } from './apis/util';
 
 export class Hybrid {
     device: Device;
@@ -44,5 +44,6 @@ export {
     Util,
     ShareArgs,
     ScanType,
+    ScanResult,
     PaymentInfo
 }

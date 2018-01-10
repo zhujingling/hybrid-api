@@ -11,6 +11,10 @@ export enum ScanType {
     QrCode = 'qrCode'
 }
 
+export interface ScanResult {
+    text: string;
+}
+
 export interface PaymentInfo {
     errorCode: string; // 1. 支付成功 2.支付失败 3.用户主动取消支付
     stateCode: string; // 支付出错时，支付平台返回的errorCode，具体值参考：
@@ -47,9 +51,14 @@ export class Util {
     }
 
     // 扫描二维码
-    scan(type: ScanType): Promise<string> {
+    scan(type: ScanType): Promise<ScanResult> {
         return this.register.callHandler('biz.util.scan', {
             type
+        }).then((result: string) => {
+            if (typeof result === 'string') {
+                return JSON.stringify(result);
+            }
+            return result;
         });
     }
 

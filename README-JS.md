@@ -152,6 +152,7 @@ YBB.hybrid.util.share(args).then(function() {
 ```js
 var scanType = 'qrCode';
 YBB.hybrid.util.scan(scanType).then(function(result) {
+    // result = {text: 'text text'}
     console.log(result);
 });
 ```

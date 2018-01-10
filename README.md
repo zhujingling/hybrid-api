@@ -188,7 +188,7 @@ hybrid.util.share(args).then(() => {
 * }
 */
 const scanType = ScanType.QrCode;
-hybrid.util.scan(scanType).then(result => {
+hybrid.util.scan(scanType).then((result: ScanResult) => {
     console.log(result);
 });
 ```
