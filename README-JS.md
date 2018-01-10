@@ -3,7 +3,7 @@
 ## 引入类库
 
 ```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.3.js"></script>
+<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.5.js"></script>
 ```
 
 ## 方法
