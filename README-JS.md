@@ -164,8 +164,8 @@ var params = '{key: value}'; // 由后台提供的字符串
 YBB.hybrid.util.pay(params).then(function(response) {
     /**
     * response = {
-    *    errorCode: string;
-    *    stateCode: string;
+    *    errorCode: any;
+    *    stateCode: number;
     *    resultDes: string;
     * }
     */

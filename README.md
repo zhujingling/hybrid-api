@@ -197,8 +197,8 @@ hybrid.util.scan(scanType).then((result: ScanResult) => {
 ```typescript
 /**
 * interface PaymentInfo {
-*    errorCode: string;
-*    stateCode: string;
+*    errorCode: any;
+*    stateCode: number;
 *    resultDes: string;
 * }
 */
