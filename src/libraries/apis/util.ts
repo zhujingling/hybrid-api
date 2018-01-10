@@ -66,12 +66,6 @@ export class Util {
     pay(params: string): Promise<PaymentInfo> {
         return this.register.callHandler('biz.util.pay', {
             content: params
-        }).then((result: any) => {
-            return {
-                resultDes: result.reultDes,
-                stateCode: result.stateCode,
-                errorCode: result.errCode
-            } as PaymentInfo;
         });
     }
 }
