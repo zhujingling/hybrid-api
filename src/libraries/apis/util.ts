@@ -54,7 +54,7 @@ export class Util {
     scan(type: ScanType): Promise<ScanResult> {
         return this.register.callHandler('biz.util.scan', {
             type
-        }).then((result: string) => {
+        }).then((result: any) => {
             if (typeof result === 'string') {
                 return JSON.stringify(result);
             }
