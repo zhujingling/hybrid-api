@@ -18,8 +18,8 @@ export interface ScanResult {
 export interface PaymentInfo {
     stateCode: number; // 1. 支付成功 2.支付失败 3.用户主动取消支付
     errorCode: any; // 支付出错时，支付平台返回的errorCode，具体值参考：
-                       // 支付宝：https://docs.open.alipay.com/204/105301/
-                       // 微信：https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5
+    // 支付宝：https://docs.open.alipay.com/204/105301/
+    // 微信：https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5
     resultDes: string; // 结果描述，具体描述为各个支付平台对应的错误描述
 }
 
@@ -55,15 +55,10 @@ export class Util {
         return this.register.callHandler('biz.util.scan', {
             type
         }).then((result: any) => {
-            const n: any = result;
             if (typeof result === 'string') {
-                n = JSON.stringify(result);
+                return JSON.stringify(result);
             }
-            return {
-                errorCode: n.errCode,
-                resultDesc: n.reultDesc,
-                stateCode: n.stateCode
-            };
+            return result;
         });
     }
 
@@ -71,6 +66,12 @@ export class Util {
     pay(params: string): Promise<PaymentInfo> {
         return this.register.callHandler('biz.util.pay', {
             content: params
+        }).then((result: any) => {
+            return {
+                resultDes: result.reultDes,
+                stateCode: result.stateCode,
+                errorCode: result.errCode
+            } as PaymentInfo;
         });
     }
 }
