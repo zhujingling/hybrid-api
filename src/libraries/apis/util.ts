@@ -20,7 +20,7 @@ export interface PaymentInfo {
     errCode: any; // 支付出错时，支付平台返回的errorCode，具体值参考：
     // 支付宝：https://docs.open.alipay.com/204/105301/
     // 微信：https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5
-    reultDes: string; // 结果描述，具体描述为各个支付平台对应的错误描述
+    resultDes: string; // 结果描述，具体描述为各个支付平台对应的错误描述
 }
 
 export class Util {
@@ -66,6 +66,17 @@ export class Util {
     pay(params: string): Promise<PaymentInfo> {
         return this.register.callHandler('biz.util.pay', {
             content: params
+        }).then((result: any) => {
+            let n = result;
+            if (typeof result === 'string') {
+                n = JSON.stringify(result);
+            }
+
+            return {
+                errCode: n.errCode,
+                resultDes: n.reultDes,
+                stateCode: n.stateCode
+            };
         });
     }
 }

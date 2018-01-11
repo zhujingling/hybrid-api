@@ -199,7 +199,7 @@ hybrid.util.scan(scanType).then((result: ScanResult) => {
 * interface PaymentInfo {
 *    errCode: any;
 *    stateCode: number;
-*    reultDes: string;
+*    resultDes: string;
 * }
 */
 

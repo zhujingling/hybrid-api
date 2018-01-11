@@ -3,7 +3,7 @@
 ## 引入类库
 
 ```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.9.js"></script>
+<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.3.0.js"></script>
 ```
 
 ## 方法
@@ -166,7 +166,7 @@ YBB.hybrid.util.pay(params).then(function(response) {
     * response = {
     *    errCode: any;
     *    stateCode: number;
-    *    reultDes: string;
+    *    resultDes: string;
     * }
     */
    console.log(response); 
