@@ -56,7 +56,7 @@ export class Util {
             type
         }).then((result: any) => {
             if (typeof result === 'string') {
-                return JSON.stringify(result);
+                return JSON.parse(result);
             }
             return result;
         });
@@ -69,7 +69,7 @@ export class Util {
         }).then((result: any) => {
             let n = result;
             if (typeof result === 'string') {
-                n = JSON.stringify(result);
+                n = JSON.parse(result);
             }
 
             return {
