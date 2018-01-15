@@ -1,6 +1,7 @@
 import { APIRegister } from '../core';
 
 export interface CertificationInfo {
+    certSuccess: string;  // '0' 失败， '1' 成功，'2'审核中
     username: string;
     idCardNo: string;
     mobile: string;
@@ -24,15 +25,7 @@ export class User {
             this.register.callHandler('user.certification', {
                 appId
             }).then(result => {
-                if (result.certSuccess === '1') {
-                    resolve({
-                        username: result.username,
-                        idCardNo: result.idCardNo,
-                        mobile: result.mobile
-                    });
-                } else {
-                    reject('用户认证失败！');
-                }
+                resolve(result);
             }).catch((e) => {
                 reject(e);
             });

@@ -3,7 +3,7 @@
 ## 引入类库
 
 ```html
-<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.3.1.js"></script>
+<script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.3.2.js"></script>
 ```
 
 ## 方法
@@ -89,6 +89,7 @@ var appId = 'appId';
 YBB.hybrid.user.certification(appId).then(function(data) {
     /**
     * data = {
+    *   certSuccess: string;  // '0' 失败， '1' 成功，'2'审核中
     *   username: string; // 用户名
     *   idCardNo: string; // 身份证号码
     *   mobile: string; // 手机号码

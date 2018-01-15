@@ -112,6 +112,7 @@ hybrid.navigation.show();
 ```typescript
 /**
 * interface CertificationInfo {
+*   certSuccess: string;  // '0' 失败， '1' 成功，'2'审核中
 *   username: string; // 用户名
 *   idCardNo: string; // 身份证号码
 *   mobile: string; // 手机号码
