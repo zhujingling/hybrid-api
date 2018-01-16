@@ -150,7 +150,7 @@ hybrid.user.login().then((isLogin: boolean) => {
 
 ### Util
 
-#### 打开新的 webview
+#### 打开新的 webview 或 APP 页面
 ```typescript
 const url: string = 'http://user.test.com';
 const params: { [key: string]: any} = {name: 'name'};

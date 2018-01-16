@@ -125,7 +125,7 @@ YBB.hybrid.user.login().then(function(isLogin) {
 
 ### Util
 
-#### 打开新的 webview
+#### 打开新的 webview 或 APP 页面
 ```js
 var url = 'http://user.test.com';
 var params = {name: 'name'};
