@@ -101,4 +101,16 @@ export class AppComponent {
     scan() {
         this.hybrid.util.scan(this.scanType);
     }
+
+    getIP() {
+        this.hybrid.util.getIP();
+    }
+
+    fingerprint() {
+        this.hybrid.util.fingerprint().then(result => this.log = result);
+    }
+
+    weixinPayByH5() {
+        this.hybrid.util.weixinPayByH5('http://www.baidu.com');
+    }
 }

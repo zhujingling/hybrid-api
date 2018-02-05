@@ -25,6 +25,14 @@ export interface PaymentInfo {
 
 export class Util {
     private register: APIRegister;
+    /* tslint:disable */
+    private modalCSS = '.ybb-modal{line-height:16px;position:absolute;left:0;right:0;top:0;bottom:0;z-index:100000;background-color:rgba(0,0,0,.5)}.ybb-modal-content{width:260px;height:158px;background-color:#fff;border-radius:13px;overflow:hidden;text-align:center;position:absolute;left:50%;top:50%;margin-left:-130px;margin-top:-79px}.ybb-modal-title{padding:24px 0;font-size:16px;color:#333}#ybb-modal-btn-fail,#ybb-modal-btn-success{width:100%;display:block;text-align:center;background:0 0;border:none;outline:0}#ybb-modal-btn-fail:active,#ybb-modal-btn-success:active{background-color:#e9eaec}#ybb-modal-btn-success{border-top:.55px solid #b4b7bd;border-bottom:.5px solid #b4b7bd;padding-top:14px;padding-bottom:14px;font-size:17px;color:#31AB40}#ybb-modal-btn-fail{font-size:14px;color:#777;padding-top:15px;padding-bottom:15px}';
+
+    private modalHTML = '<div class="ybb-modal-content"><div class="ybb-modal-title">请确认微信支付是否已完成</div><button type="button" id="ybb-modal-btn-success">已完成支付</button> <button type="button" id="ybb-modal-btn-fail">支付遇到问题，重新支付</button></div>';
+
+    /* tslint:enable */
+
+    private isAppend: boolean = false;
 
     constructor(register: APIRegister) {
         this.register = register;
@@ -76,6 +84,88 @@ export class Util {
                 errCode: n.errCode,
                 resultDes: n.reultDes,
                 stateCode: n.stateCode
+            };
+        });
+    }
+
+    getIP(): Promise<{ clientIP: string }> {
+        return this.register.callHandler('biz.util.clientIP', {});
+    }
+
+    fingerprint(): Promise<string> {
+        return new Promise((resolve, reject) => {
+            if (window['Fingerprint2']) {
+                const fp = new (<any> window).Fingerprint2();
+                fp.get((result: string) => {
+                    resolve(result);
+                });
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = '//wx.gtimg.com/wxpay_h5/fingerprint2.min.1.4.1.js';
+
+            script.onload = () => {
+                document.body.removeChild(script);
+                if (window['Fingerprint2']) {
+                    const fp = new (<any> window).Fingerprint2();
+                    fp.get((result: string) => {
+                        resolve(result);
+                    });
+                } else {
+                    reject(new Error('未找到 `Fingerprint2` 类'));
+                }
+            };
+
+            script.onerror = () => {
+                document.body.removeChild(script);
+                reject(new Error('微信sdk下载失败'));
+            };
+
+            document.body.appendChild(script);
+        });
+    }
+
+    weixinPayByH5(url: string): Promise<void> {
+        const body = document.body;
+        if (this.isAppend === false) {
+            const style = document.createElement('style');
+            style.innerHTML = this.modalCSS;
+            body.appendChild(style);
+            this.isAppend = true;
+        }
+
+        return new Promise<void>((resolve, reject) => {
+            const modal = document.createElement('div');
+            modal.className = 'ybb-modal';
+            modal.innerHTML = this.modalHTML;
+
+            body.appendChild(modal);
+
+            const successBtn = modal.getElementsByTagName('button')[0];
+            const failBtn = modal.getElementsByTagName('button')[1];
+
+            let iframe = document.createElement('iframe');
+            const pay = function () {
+                iframe.style.cssText = 'width: 0; height: 0; position: absolute; left: -9999px; top: -9999px;';
+                body.appendChild(iframe);
+                iframe.src = url;
+                iframe.onerror = function () {
+                    reject();
+                };
+            };
+
+            pay();
+
+            successBtn.onclick = function () {
+                body.removeChild(iframe);
+                body.removeChild(modal);
+                resolve();
+            };
+            failBtn.onclick = function () {
+                body.removeChild(iframe);
+                body.removeChild(modal);
+                iframe = document.createElement('iframe');
+                pay();
             };
         });
     }

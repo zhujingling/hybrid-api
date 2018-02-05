@@ -16,6 +16,7 @@
     right: 0;
     top: 200px;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     h3 {
         padding-left: 15px;
         background-color: #555;
