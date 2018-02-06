@@ -210,4 +210,36 @@ hybrid.util.pay(params).then((response: PaymentInfo) => {
 });
 ```
 
+### 获取本地IP
+
+```typescript
+hybrid.util.getIP().then(response => {
+    console.log(response.clientIP);
+});
+```
+
+### 获取浏览器指纹信息
+
+```typescript
+hybrid.util.fingerprint().then((result: string) => {
+   console.log(result); 
+});
+```
+
+### 微信H5支付
+```typescript
+const url: string = 'weixin://xxxxxxxx';
+hybrid.util.weixinPayByH5(url).then(() => {
+    // 用户确认支付成功
+    console.log('支付成功');
+    // 请求支付结果，如：
+    // this.http.get('pay-result.json').subscribe(response => {
+    //     this.data = response.data;
+    // });
+}).catch(e => {
+    // 支付失败
+    console.log(e);
+});
+```
+
 
