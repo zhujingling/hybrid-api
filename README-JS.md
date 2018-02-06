@@ -176,7 +176,7 @@ YBB.hybrid.util.pay(params).then(function(response) {
 ### 获取本地IP
 
 ```js
-YBB.hybrid.util.getIP().then(response => {
+YBB.hybrid.util.getIP().then(function(response) {
     console.log(response.clientIP);
 });
 ```
@@ -184,7 +184,7 @@ YBB.hybrid.util.getIP().then(response => {
 ### 获取浏览器指纹信息
 
 ```js
-YBB.hybrid.util.fingerprint().then(result => {
+YBB.hybrid.util.fingerprint().then(function(result) {
    console.log(result); 
 });
 ```
@@ -192,14 +192,14 @@ YBB.hybrid.util.fingerprint().then(result => {
 ### 微信H5支付
 ```js
 var url = 'weixin://xxxxxxxx';
-YBB.hybrid.util.weixinPayByH5(url).then(() => {
+YBB.hybrid.util.weixinPayByH5(url).then(function() {
     // 用户确认支付成功
     console.log('支付成功');
     // 请求支付结果，如：
     // this.http.get('pay-result.json').subscribe(response => {
     //     this.data = response.data;
     // });
-}).catch(e => {
+}).catch(function(e) {
     // 支付失败
     console.log(e);
 });
