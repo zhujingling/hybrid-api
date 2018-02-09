@@ -89,7 +89,32 @@ export class Util {
     }
 
     getIP(): Promise<{ clientIP: string }> {
-        return this.register.callHandler('biz.util.clientIP', {});
+        return new Promise<{ clientIP: string }>((resolve, reject) => {
+            const body = document.body;
+            const script = document.createElement('script');
+            const callbackName = ('ybb' + Math.random()).replace(/\./g, '');
+
+            window[callbackName] = function (result: any) {
+                if (result.code === 10000) {
+                    resolve({clientIP: result.data});
+                } else {
+                    reject(new Error(result.message));
+                }
+                window[callbackName] = null;
+            };
+
+            script.onload = function () {
+                body.removeChild(script);
+            };
+
+            script.onerror = function () {
+                body.removeChild(script);
+                reject(new Event('接口调用失败'));
+            };
+
+            script.src = 'http://121.43.187.16:8087/api/v1/ip?callback=' + callbackName;
+            body.appendChild(script);
+        });
     }
 
     fingerprint(): Promise<string> {
@@ -134,7 +159,7 @@ export class Util {
             this.isAppend = true;
         }
 
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>((resolve) => {
             const modal = document.createElement('div');
             modal.className = 'ybb-modal';
             modal.innerHTML = this.modalHTML;
@@ -144,28 +169,14 @@ export class Util {
             const successBtn = modal.getElementsByTagName('button')[0];
             const failBtn = modal.getElementsByTagName('button')[1];
 
-            let iframe = document.createElement('iframe');
-            const pay = function () {
-                iframe.style.cssText = 'width: 0; height: 0; position: absolute; left: -9999px; top: -9999px;';
-                body.appendChild(iframe);
-                iframe.src = url;
-                iframe.onerror = function () {
-                    reject();
-                };
-            };
-
-            pay();
+            location.href = url;
 
             successBtn.onclick = function () {
-                body.removeChild(iframe);
                 body.removeChild(modal);
                 resolve();
             };
             failBtn.onclick = function () {
-                body.removeChild(iframe);
-                body.removeChild(modal);
-                iframe = document.createElement('iframe');
-                pay();
+                location.href = url;
             };
         });
     }

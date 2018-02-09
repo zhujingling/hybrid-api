@@ -103,7 +103,7 @@ export class AppComponent {
     }
 
     getIP() {
-        this.hybrid.util.getIP();
+        this.hybrid.util.getIP().then(result => this.log = JSON.stringify(result));
     }
 
     fingerprint() {
