@@ -150,7 +150,7 @@ export class Util {
         });
     }
 
-    weixinPayByH5(url: string): Promise<void> {
+    showWeixinPayModal(): Promise<boolean> {
         const body = document.body;
         if (this.isAppend === false) {
             const style = document.createElement('style');
@@ -159,7 +159,7 @@ export class Util {
             this.isAppend = true;
         }
 
-        return new Promise<void>((resolve) => {
+        return new Promise<boolean>((resolve) => {
             const modal = document.createElement('div');
             modal.className = 'ybb-modal';
             modal.innerHTML = this.modalHTML;
@@ -169,14 +169,13 @@ export class Util {
             const successBtn = modal.getElementsByTagName('button')[0];
             const failBtn = modal.getElementsByTagName('button')[1];
 
-            location.href = url;
-
             successBtn.onclick = function () {
                 body.removeChild(modal);
-                resolve();
+                resolve(true);
             };
             failBtn.onclick = function () {
-                location.href = url;
+                body.removeChild(modal);
+                resolve(false);
             };
         });
     }

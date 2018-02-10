@@ -111,6 +111,8 @@ export class AppComponent {
     }
 
     weixinPayByH5() {
-        this.hybrid.util.weixinPayByH5('http://www.baidu.com');
+        this.hybrid.util.showWeixinPayModal().then(result => {
+            alert('结果是:' + result);
+        });
     }
 }

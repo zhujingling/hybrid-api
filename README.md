@@ -194,7 +194,7 @@ hybrid.util.scan(scanType).then((result: ScanResult) => {
 });
 ```
 
-### 支付
+#### 支付
 ```typescript
 /**
 * interface PaymentInfo {
@@ -210,7 +210,7 @@ hybrid.util.pay(params).then((response: PaymentInfo) => {
 });
 ```
 
-### 获取本地IP
+#### 获取本地IP
 
 ```typescript
 hybrid.util.getIP().then(response => {
@@ -218,7 +218,7 @@ hybrid.util.getIP().then(response => {
 });
 ```
 
-### 获取浏览器指纹信息
+#### 获取浏览器指纹信息
 
 ```typescript
 hybrid.util.fingerprint().then((result: string) => {
@@ -226,20 +226,39 @@ hybrid.util.fingerprint().then((result: string) => {
 });
 ```
 
-### 微信H5支付
+#### 微信H5支付
+
+拿到指纹采集的结果和IP，并传给后台，由后台生成微信支付的 url，前端跳转到对应地址即可。示例如下：
+
 ```typescript
-const url: string = 'weixin://xxxxxxxx';
-hybrid.util.weixinPayByH5(url).then(() => {
-    // 用户确认支付成功
-    console.log('支付成功');
-    // 请求支付结果，如：
-    // this.http.get('pay-result.json').subscribe(response => {
-    //     this.data = response.data;
-    // });
-}).catch(e => {
-    // 支付失败
-    console.log(e);
+Promise.all([hybrid.util.fingerprint(), hybrid.util.getIP()]).then((result: Array<any>) => {
+    const fingerprint = result[0];
+    const ip = result[1].clientIP;
+    
+    return this.http.post('http://www.demo.com/get-weixin-pay-url', {
+        fingerprint,
+        ip
+    });
+}).then(response => {
+    if (response.success) {
+        // response.data: weixin://pay.com/XXXXXXX
+        location.href = response.data;
+    }
 });
+
+
 ```
 
+#### 弹出微信支付结果模态框
 
+在调用微信支付后的回调页面，可以调用弹出窗，由用户选择是支付成功，还是重新支付，**不分用户选择什么，真正的支付结果，均以查询为准**
+
+```typescript
+hybrid.util.showWeixinPayModal().then((selectResult: boolean) => {
+    if (selectResult) {
+        console.log('用户选择了支付成功');
+    } else {
+        console.log('用户选择了重新支付');
+    }
+});
+```
