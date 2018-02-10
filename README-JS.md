@@ -202,7 +202,7 @@ Promise.all([YBB.hybrid.util.fingerprint(), YBB.hybrid.util.getIP()]).then(funct
         url: 'http://www.demo.com/get-weixin-pay-url',
         method: 'post',
         data: {
-            fingerprint:fingerprint,
+            fingerprint: fingerprint,
             ip: ip
         }
     }).success(function(response) {
